@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="/posts" class="btn btn-secondary float-end btn-go-back">Go Back</a>
+    <a href="/posts" class="btn btn-info float-end btn-go-back">Go Back</a>
     <h1 class="post-title">{{ $post->title }}</h1>
     <img class="img-fluid post-image" style=" border-radius: 20px" src="/storage/cover_images/{{ $post->cover_image }}" alt="Cover Image">
     <br><br>
@@ -12,6 +12,7 @@
     <hr class="border-light">
     <small class="post-meta">Written on {{ $post->created_at }} by {{ $post->user->name }}</small>
     <hr class="border-light">
+    <a href="/posts/{{ $post->id }}/comment" class="btn btn-info">Comment</a>
     @if (!Auth::guest())
         @if (Auth::user()->id == $post->user->id)
             <div class="d-flex justify-content-between mt-4">

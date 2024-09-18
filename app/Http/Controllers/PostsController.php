@@ -74,13 +74,12 @@ class PostsController extends Controller
         }else{
             $fileNameToStore = 'noimage.jpg';
         }
-        //create post
-        $post = new Post();
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
-        $post->user_id = auth()->user()->id;
-        $post->cover_image = $fileNameToStore;
-        $post->save();
+        $post = Post::create([
+            'title'=> $request->input('title'),
+            'body' => $request->input('body'),
+            'user_id' => auth()->user()->id,
+            'cover_image' => $fileNameToStore
+        ]);
         return redirect('/posts')->with('success','Post Created');
     }
 
